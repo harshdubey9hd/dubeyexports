@@ -1,0 +1,206 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Fullscreen Hero with Background */
+.hero {
+    height: 100vh;
+    background: url('globe.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.7);
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+/* Roadmap Section */
+.roadmap-section {
+    padding: 100px 20px;
+    background: url('containers.jpg') center/cover no-repeat, #f9f9f9;   
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.roadmap-section h2 {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+}
+
+.timeline {
+    position: relative;
+    margin: 0 auto;
+    padding: 40px 0;
+    width: 90%;
+    max-width: 900px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: #0d6efd;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 25px 35px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.timeline-item h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0d6efd;
+    margin-bottom: 10px;
+}
+
+.timeline-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border: 4px solid #0d6efd;
+    border-radius: 50%;
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: -8px;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+    .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        text-align: left !important;
+        padding-left: 60px;
+    }
+    .timeline-item::before {
+        left: 20px !important;
+        right: auto !important;
+    }
+}
+
+/* Footer */
+.footer {
+    padding: 40px;
+    text-align: center;
+    font-size: 15px;
+    background: #f1f1f1;
+    color: #555;
+}
+
+
+.roadmap-section.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Back to original position */
+}
+
+/* Slide-in animation for timeline items */
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 25px 35px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    opacity: 0; /* Initially hidden */
+    transform: translateX(100px); /* Slide in from the right */
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+    transform: translateX(-100px); /* Slide in from the left */
+}
+
+.timeline-item.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateX(0); /* Back to original position */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        text-align: left !important;
+        padding-left: 60px;
+        transform: translateX(50px); /* Slide in from the right for mobile */
+    }
+    .timeline-item:nth-child(odd) {
+        transform: translateX(50px); /* Same for odd items on mobile */
+    }
+}
+
+.roadmap-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75); /* adjust 0.5 for darkness */
+    z-index: 0; /* keep behind content */
+}
+
+/* Ensure content appears above overlay */
+.roadmap-section h2,
+.roadmap-section .timeline {
+    position: relative;
+    z-index: 1;
+}
